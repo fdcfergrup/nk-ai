@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NK AI - Business Support</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1/build/qrcode.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        --aurora-speed: 30s;
+        --aurora-size: 800px;
+      }
+
+      .aurora-outer {
+        animation: aurora_outer var(--aurora-speed) ease-in-out infinite both;
+      }
+      .aurora-inner {
+        animation: aurora_inner var(--aurora-speed) ease-in-out infinite both;
+      }
+      .grid-bg {
+        background-image:
+          linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 4rem 4rem;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'primary': '#05070D',
+              'secondary': '#10141F',
+              'accent': '#00F6FF',
+              'accent-dark': '#00B8BF',
+              'accent-secondary': '#A955F7',
+              'text-primary': '#EAEBEE',
+              'text-secondary': '#8A93A3',
+            },
+            fontFamily: {
+              sans: ['Lato', 'sans-serif'],
+              heading: ['Poppins', 'sans-serif'],
+              mono: ['Roboto Mono', 'monospace'],
+            },
+            backgroundImage: {
+               'grid-pattern': `
+                    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0),
+                    radial-gradient(circle at 10px 10px, rgba(255,255,255,0.05) 1px, transparent 0)
+                `,
+            },
+            animation: {
+                'fade-in': 'fadeIn 1s ease-in-out',
+                'fade-in-up': 'fadeInUp 0.8s ease-out',
+                'glow': 'glow 2s ease-in-out infinite',
+                'aurora': 'aurora 20s ease-in-out infinite both',
+                'border-spin': 'border-spin 4s linear infinite',
+                'slide-in-up': 'slideInUp 0.5s ease-out forwards',
+            },
+            keyframes: {
+                fadeIn: {
+                    '0%': { opacity: 0 },
+                    '100%': { opacity: 1 },
+                },
+                fadeInUp: {
+                    '0%': {
+                        opacity: 0,
+                        transform: 'translateY(20px)'
+                    },
+                    '100%': {
+                        opacity: 1,
+                        transform: 'translateY(0)'
+                    },
+                },
+                glow: {
+                  '0%, 100%': { 'box-shadow': '0 0 5px -1px theme(colors.accent)' },
+                  '50%': { 'box-shadow': '0 0 15px 0px theme(colors.accent)' },
+                },
+                aurora_outer: {
+                  '0%': { transform: 'translateX(-50%) translateY(-50%) rotate(0deg) scale(1.5)', opacity: 0.8 },
+                  '50%': { transform: 'translateX(-50%) translateY(-50%) rotate(180deg) scale(1.2)', opacity: 0.5 },
+                  '100%': { transform: 'translateX(-50%) translateY(-50%) rotate(360deg) scale(1.5)', opacity: 0.8 },
+                },
+                aurora_inner: {
+                  '0%': { transform: 'translateX(-50%) translateY(-50%) rotate(0deg) scale(1.5)', opacity: 0.8 },
+                   '50%': { transform: 'translateX(-50%) translateY(-50%) rotate(-180deg) scale(1.8)', opacity: 0.5 },
+                  '100%': { transform: 'translateX(-50%) translateY(-50%) rotate(-360deg) scale(1.5)', opacity: 0.8 },
+                },
+                'border-spin': {
+                  '100%': {
+                    transform: 'rotate(360deg)',
+                  },
+                },
+                 slideInUp: {
+                    'from': {
+                        opacity: '0',
+                        transform: 'translateY(50px)'
+                    },
+                    'to': {
+                        opacity: '1',
+                        transform: 'translateY(0)'
+                    }
+                }
+            }
+          }
+        }
+      }
+    </script>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.7.0",
+    "chart.js": "https://esm.sh/chart.js@^4.5.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-primary text-text-primary antialiased">
+    <div class="fixed top-0 left-0 w-full h-full grid-bg -z-10"></div>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
